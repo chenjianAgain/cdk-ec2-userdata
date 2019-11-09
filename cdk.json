@@ -1,0 +1,3 @@
+{
+  "app": "npx ts-node bin/my-ec2-app.ts"
+}
