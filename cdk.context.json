@@ -1,0 +1,26 @@
+{
+  "vpc-provider:account=374801192098:filter.isDefault=true:region=us-west-2": {
+    "vpcId": "vpc-dfff03a7",
+    "availabilityZones": [
+      "us-west-2a",
+      "us-west-2b",
+      "us-west-2c",
+      "us-west-2d"
+    ],
+    "publicSubnetIds": [
+      "subnet-62fc9629",
+      "subnet-4a581033",
+      "subnet-ef144eb5",
+      "subnet-05429f2e"
+    ],
+    "publicSubnetNames": [
+      "Public"
+    ],
+    "publicSubnetRouteTableIds": [
+      "rtb-250ed25e",
+      "rtb-250ed25e",
+      "rtb-250ed25e",
+      "rtb-250ed25e"
+    ]
+  }
+}
