@@ -1,0 +1,67 @@
+Resources:
+  Master:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: devops2
+      ImageId: ami-28e07e50
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: Master
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname master
+  Node1:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: devops2
+      ImageId: ami-28e07e50
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: Node1
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname node1
+  Node2:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: devops2
+      ImageId: ami-28e07e50
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: Node2
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname node2
