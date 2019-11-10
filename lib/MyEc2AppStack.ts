@@ -5,14 +5,17 @@ export class MyEc2AppStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-
+    // sudo yum update -y
 
     const shellCommandsMaster = ec2.UserData.forLinux();
-    shellCommandsMaster.addCommands("sudo hostnamectl set-hostname master")
-    const shellCommandsNode1 = ec2.UserData.forLinux()
-    shellCommandsNode1.addCommands("sudo hostnamectl set-hostname node1")
-    const shellCommandsNode2 = ec2.UserData.forLinux()
-    shellCommandsNode2.addCommands("sudo hostnamectl set-hostname node2")
+    shellCommandsMaster.addCommands("sudo yum update -y");
+    shellCommandsMaster.addCommands("sudo hostnamectl set-hostname master");
+    const shellCommandsNode1 = ec2.UserData.forLinux();
+    shellCommandsNode1.addCommands("sudo yum update -y");
+    shellCommandsNode1.addCommands("sudo hostnamectl set-hostname node1");
+    const shellCommandsNode2 = ec2.UserData.forLinux();
+    shellCommandsNode2.addCommands("sudo yum update -y");
+    shellCommandsNode2.addCommands("sudo hostnamectl set-hostname node2");
     // shellCommands.addCommands("command2")
 
     // Using default vpc
@@ -32,7 +35,7 @@ export class MyEc2AppStack extends cdk.Stack {
 
     // We are using the latest AMAZON LINUX AMI
     const awsAMI = new ec2.AmazonLinuxImage({generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2});
-    // const linuxAMI = new ec2.
+    // const linuxAMI = new ec2.GenericLinuxImage()
 
     const instanceNameMaster = "master-instance"
     // We define master-instance details here
