@@ -1,0 +1,81 @@
+Parameters:
+  InstanceAMI:
+    Description: Managed AMI ID for EC2 Instance
+    Type : String
+    Default: ami-a6cfeede
+Resources:
+  Master:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: key
+      ImageId: 
+        Ref: InstanceAMI 
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: !Sub
+            - "Master-${StackName}"
+            - StackName: !Ref AWS::StackName
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname master
+  Node1:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: key
+      ImageId: 
+        Ref: InstanceAMI 
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: !Sub
+            - "Node1-${StackName}"
+            - StackName: !Ref AWS::StackName
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname node1
+  Node2:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces: 
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: 
+            - sg-04075a730b582549c
+          SubnetId: subnet-0c0f69cf657dd3f93
+      KeyName: key
+      ImageId: 
+        Ref: InstanceAMI 
+      InstanceType: t2.micro
+      Tags:
+        - 
+          Key: Name
+          Value: !Sub
+            - "Node2-${StackName}"
+            - StackName: !Ref AWS::StackName
+      UserData:
+        "Fn::Base64":
+          !Sub |
+          #!/bin/bash
+          sudo yum update -y
+          sudo hostnamectl set-hostname node2
