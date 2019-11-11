@@ -2,7 +2,7 @@ Parameters:
   InstanceAMI:
     Description: Managed AMI ID for EC2 Instance
     Type : String
-    Default: ami-0c155d582e592bec0
+    Default: ami-0a85857bfc5345c38
 Resources:
   Master:
     Type: AWS::EC2::Instance
