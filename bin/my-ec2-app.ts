@@ -6,7 +6,7 @@ import { MyEc2AppStack } from '../lib/MyEc2AppStack';
 
 
 const env = {
-    region: 'us-west-2',
+    region: 'us-east-1',
     account: '374801192098'
 };
 const app = new cdk.App();
