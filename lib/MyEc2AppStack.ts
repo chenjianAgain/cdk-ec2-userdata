@@ -71,7 +71,7 @@ export class MyEc2AppStack extends cdk.Stack {
     const instanceNameNode1 = "node1-instance"
     const node1Ec2Instance = new ec2.CfnInstance(this, instanceNameNode1, {
       imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops2',
+      keyName: 'devops',
       instanceType: "t2.micro",
       monitoring: false,
       tags: [
@@ -93,7 +93,7 @@ export class MyEc2AppStack extends cdk.Stack {
     const instanceNameNode2 = "node2-instance"
     const node2Ec2Instance = new ec2.CfnInstance(this, instanceNameNode2, {
       imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops2',
+      keyName: 'devops',
       instanceType: "t2.micro",
       monitoring: false,
       tags: [
