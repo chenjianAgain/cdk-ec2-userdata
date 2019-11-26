@@ -49,7 +49,7 @@ export class MyEc2AppStack extends cdk.Stack {
     // We define master-instance details here
     const masterEc2Instance = new ec2.CfnInstance(this, instanceNameMaster, {
       imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops2',
+      keyName: 'devops',
       instanceType: "t2.micro",
       monitoring: false,
       tags: [
