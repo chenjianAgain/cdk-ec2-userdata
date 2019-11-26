@@ -1,6 +1,5 @@
 import cdk = require('@aws-cdk/core');
 import ec2 = require('@aws-cdk/aws-ec2');
-import autoscaling = require('@aws-cdk/aws-autoscaling');
 
 export class MyEc2AppStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -67,26 +66,7 @@ export class MyEc2AppStack extends cdk.Stack {
       userData: cdk.Fn.base64(shellCommandsMaster.render())
 
     });
-    
-    const cfnLC = new autoscaling.CfnLaunchConfiguration(this, "Node", {
-            imageId: awsAMI.getImage(this).imageId,
-            instanceType: 't2.micro',
-            securityGroups: [mySecurityGroup.securityGroupId],
-            userData: cdk.Fn.base64(shellCommandsMaster.render())
-        });
-    	const asg = new autoscaling.CfnAutoScalingGroup(this, "EC2AutoScalingGroup", {
-//     		vpcZoneIdentifier: ["subnet-03dafe4a903bf77f3", "subnet-09d9e4fc315254db0"],
-        vpc,
-    		launchConfigurationName: cfnLC.ref,
-//     		minSize: "1",
-//     		maxSize: "2",
-//     		desiredCapacity: "1",
-//             healthCheckGracePeriod: 100,
-//             tags: [{ key: "Name", value: "HistoryRetriever_Dev_cdk_autoscalin", propagateAtLaunch: true}]
-    	});
-        new cdk.CfnOutput(this, 'ALBSvcURL', {
-           value: `${cfnLC.ref}`
-        })
+   
 
 //     // We define node1-instance details here
 //     const instanceNameNode1 = "node1-instance"
