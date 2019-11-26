@@ -49,7 +49,7 @@ export class MyEc2AppStack extends cdk.Stack {
     // We define master-instance details here
     const masterEc2Instance = new ec2.CfnInstance(this, instanceNameMaster, {
       imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops',
+//       keyName: 'devops',
       instanceType: "t2.micro",
       monitoring: false,
       tags: [
@@ -67,49 +67,49 @@ export class MyEc2AppStack extends cdk.Stack {
 
     })
 
-    // We define node1-instance details here
-    const instanceNameNode1 = "node1-instance"
-    const node1Ec2Instance = new ec2.CfnInstance(this, instanceNameNode1, {
-      imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops',
-      instanceType: "t2.micro",
-      monitoring: false,
-      tags: [
-        {"key": "Name", "value": instanceNameNode1}
-      ],
-      networkInterfaces: [
-        {
-          deviceIndex: "0",
-          associatePublicIpAddress: true,
-          subnetId: vpc.publicSubnets[0].subnetId,
-          groupSet: [mySecurityGroup.securityGroupId]
-        }
-      ],
-      userData: cdk.Fn.base64(shellCommandsNode1.render())
-    })
+//     // We define node1-instance details here
+//     const instanceNameNode1 = "node1-instance"
+//     const node1Ec2Instance = new ec2.CfnInstance(this, instanceNameNode1, {
+//       imageId: awsAMI.getImage(this).imageId,
+//       keyName: 'devops',
+//       instanceType: "t2.micro",
+//       monitoring: false,
+//       tags: [
+//         {"key": "Name", "value": instanceNameNode1}
+//       ],
+//       networkInterfaces: [
+//         {
+//           deviceIndex: "0",
+//           associatePublicIpAddress: true,
+//           subnetId: vpc.publicSubnets[0].subnetId,
+//           groupSet: [mySecurityGroup.securityGroupId]
+//         }
+//       ],
+//       userData: cdk.Fn.base64(shellCommandsNode1.render())
+//     })
 
 
-    // We define node2-instance details here
-    const instanceNameNode2 = "node2-instance"
-    const node2Ec2Instance = new ec2.CfnInstance(this, instanceNameNode2, {
-      imageId: awsAMI.getImage(this).imageId,
-      keyName: 'devops',
-      instanceType: "t2.micro",
-      monitoring: false,
-      tags: [
-        {"key": "Name", "value": instanceNameNode2}
-      ],
-      networkInterfaces: [
-        {
-          deviceIndex: "0",
-          associatePublicIpAddress: true,
-          subnetId: vpc.publicSubnets[0].subnetId,
-          groupSet: [mySecurityGroup.securityGroupId],
+//     // We define node2-instance details here
+//     const instanceNameNode2 = "node2-instance"
+//     const node2Ec2Instance = new ec2.CfnInstance(this, instanceNameNode2, {
+//       imageId: awsAMI.getImage(this).imageId,
+//       keyName: 'devops',
+//       instanceType: "t2.micro",
+//       monitoring: false,
+//       tags: [
+//         {"key": "Name", "value": instanceNameNode2}
+//       ],
+//       networkInterfaces: [
+//         {
+//           deviceIndex: "0",
+//           associatePublicIpAddress: true,
+//           subnetId: vpc.publicSubnets[0].subnetId,
+//           groupSet: [mySecurityGroup.securityGroupId],
     
-        }
-      ],
-      userData: cdk.Fn.base64(shellCommandsNode2.render())
-    })
+//         }
+//       ],
+//       userData: cdk.Fn.base64(shellCommandsNode2.render())
+//     })
 
 
   }
