@@ -8,16 +8,22 @@ export class MyEc2AppStack extends cdk.Stack {
     // sudo yum update -y
 
     const shellCommandsMaster = ec2.UserData.forLinux();
-    shellCommandsMaster.addCommands("sudo yum update -y");
-    shellCommandsMaster.addCommands("sudo hostnamectl set-hostname master");
+    shellCommandsMaster.addCommands("yum update -y");
+    shellCommandsMaster.addCommands("hostnamectl set-hostname master");
+    shellCommandsMaster.addCommands("yum install -y httpd");
+    shellCommandsMaster.addCommands("echo test > /var/www/html/index.html");
+    shellCommandsMaster.addCommands("systemctl start httpd");
+    //shellCommandsMaster.addCommands("echo test > /var/www/html/index.html");
+
+    
     const shellCommandsNode1 = ec2.UserData.forLinux();
     shellCommandsNode1.addCommands("sudo yum update -y");
     shellCommandsNode1.addCommands("sudo hostnamectl set-hostname node1");
+    
     const shellCommandsNode2 = ec2.UserData.forLinux();
     shellCommandsNode2.addCommands("sudo yum update -y");
     shellCommandsNode2.addCommands("sudo hostnamectl set-hostname node2");
-    // shellCommands.addCommands("command2")
-
+    
     // Using default vpc
     const vpc = ec2.Vpc.fromLookup(this, 'VPC', {
       isDefault: true
