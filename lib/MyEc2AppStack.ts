@@ -1,5 +1,6 @@
 import cdk = require('@aws-cdk/core');
 import ec2 = require('@aws-cdk/aws-ec2');
+import autoscaling = require('@aws-cdk/aws-autoscaling');
 
 export class MyEc2AppStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
