@@ -24,10 +24,12 @@ export class MyEc2AppStack extends cdk.Stack {
     shellCommandsNode2.addCommands("sudo yum update -y");
     shellCommandsNode2.addCommands("sudo hostnamectl set-hostname node2");
     
-    // Using default vpc
-    const vpc = ec2.Vpc.fromLookup(this, 'VPC', {
-      isDefault: true
-    });
+//     // Using default vpc
+//     const vpc = ec2.Vpc.fromLookup(this, 'VPC', {
+//       isDefault: true
+//     });
+    
+    const vpc = new ec2.Vpc(this, 'VPC');
 
     // Open port 22 for SSH connection from anywhere
     const mySecurityGroup = new ec2.SecurityGroup(this, 'SecurityGroup', {
