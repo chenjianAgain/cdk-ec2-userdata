@@ -10,5 +10,5 @@ const env = {
     account: '374801192098'
 };
 const app = new cdk.App();
-new CdkPostStack(app, 'CdkPostStack', { env });
+//new CdkPostStack(app, 'CdkPostStack', { env });
 new MyEc2AppStack(app, 'MyEc2AppStack', { env });
